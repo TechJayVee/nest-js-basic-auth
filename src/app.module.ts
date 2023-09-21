@@ -5,6 +5,8 @@ import { BookmarkModule } from './bookmark/bookmark.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './utils';
+import { JwtGuard } from './auth/guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -17,7 +19,12 @@ import { LoggerMiddleware } from './utils';
     PrismaModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
