@@ -9,6 +9,8 @@ import { JwtGuard } from './auth/guard';
 import { APP_GUARD } from '@nestjs/core';
 import { QueryModule } from './query/query.module';
 import { RoleModule } from './role/role.module';
+import { CaslModule } from './casl/casl.module';
+import { AbilitiesGuard } from './casl/guard';
 
 @Module({
   imports: [
@@ -21,12 +23,17 @@ import { RoleModule } from './role/role.module';
     PrismaModule,
     QueryModule,
     RoleModule,
+    CaslModule,
   ],
   controllers: [],
   providers: [
     {
       provide: APP_GUARD,
       useClass: JwtGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AbilitiesGuard,
     },
   ],
 })
