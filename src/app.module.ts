@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './utils';
 import { JwtGuard } from './auth/guard';
 import { APP_GUARD } from '@nestjs/core';
+import { QueryModule } from './query/query.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { APP_GUARD } from '@nestjs/core';
     UserModule,
     BookmarkModule,
     PrismaModule,
+    QueryModule,
   ],
   controllers: [],
   providers: [
