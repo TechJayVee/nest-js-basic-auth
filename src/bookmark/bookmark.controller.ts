@@ -22,13 +22,13 @@ export class BookmarkController {
   constructor(private bookmarkService: BookmarkService) {}
 
   @Get()
-  getBookmarks(@GetUser('id') userId: number) {
+  getBookmarks(@GetUser('id') userId: string) {
     return this.bookmarkService.getBookmarks(userId);
   }
 
   @Post()
   createBookmark(
-    @GetUser('id') userId: number,
+    @GetUser('id') userId: string,
     @Body() dto: CreateBookmarkDto,
   ) {
     return this.bookmarkService.createBookmark(userId, dto);
@@ -36,8 +36,8 @@ export class BookmarkController {
 
   @Patch(':id')
   edithBookmarkById(
-    @GetUser('id') userId: number,
-    @Param('id', ParseIntPipe) bookmarkId: number,
+    @GetUser('id') userId: string,
+    @Param('id', ParseIntPipe) bookmarkId: string,
     @Body() dto: EditBookmarkDto,
   ) {
     return this.bookmarkService.edithBookmarkById(userId, bookmarkId, dto);
@@ -45,8 +45,8 @@ export class BookmarkController {
 
   @Get(':id')
   getBookmarkById(
-    @GetUser('id') userId: number,
-    @Param('id', ParseIntPipe) bookmarkId: number,
+    @GetUser('id') userId: string,
+    @Param('id', ParseIntPipe) bookmarkId: string,
   ) {
     return this.bookmarkService.getBookmarkById(userId, bookmarkId);
   }
@@ -54,8 +54,8 @@ export class BookmarkController {
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   deleteBookmarkById(
-    @GetUser('id') userId: number,
-    @Param('id', ParseIntPipe) bookmarkId: number,
+    @GetUser('id') userId: string,
+    @Param('id', ParseIntPipe) bookmarkId: string,
   ) {
     return this.bookmarkService.deleteBookmarkById(userId, bookmarkId);
   }
