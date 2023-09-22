@@ -15,7 +15,7 @@ export class UserController {
   }
 
   @Patch()
-  edithUser(@GetUser('id') userId: number, @Body() dto: edithUserDto) {
+  edithUser(@GetUser('id') userId: string, @Body() dto: edithUserDto) {
     console.log('userId', userId);
 
     return this.userService.editUser(userId, dto);

@@ -8,6 +8,7 @@ import { LoggerMiddleware } from './utils';
 import { JwtGuard } from './auth/guard';
 import { APP_GUARD } from '@nestjs/core';
 import { QueryModule } from './query/query.module';
+import { RoleModule } from './role/role.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { QueryModule } from './query/query.module';
     BookmarkModule,
     PrismaModule,
     QueryModule,
+    RoleModule,
   ],
   controllers: [],
   providers: [
