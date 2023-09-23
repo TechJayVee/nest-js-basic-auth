@@ -11,12 +11,15 @@ import { QueryModule } from './query/query.module';
 import { RoleModule } from './role/role.module';
 import { CaslModule } from './casl/casl.module';
 import { AbilitiesGuard } from './casl/guard';
+import { EventService } from './event/event.service';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    EventEmitterModule.forRoot(),
     AuthModule,
     UserModule,
     BookmarkModule,
@@ -35,6 +38,7 @@ import { AbilitiesGuard } from './casl/guard';
       provide: APP_GUARD,
       useClass: AbilitiesGuard,
     },
+    EventService,
   ],
 })
 export class AppModule implements NestModule {
