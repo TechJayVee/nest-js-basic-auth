@@ -13,6 +13,7 @@ import { CaslModule } from './casl/casl.module';
 import { AbilitiesGuard } from './casl/guard';
 import { EventService } from './event/event.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     QueryModule,
     RoleModule,
     CaslModule,
+    MailModule,
   ],
   controllers: [],
   providers: [
