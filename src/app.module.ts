@@ -14,6 +14,10 @@ import { AbilitiesGuard } from './casl/guard';
 import { EventService } from './event/event.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { MailModule } from './mail/mail.module';
+import { FileModule } from './file/file.module';
+import { AlsModule } from './als/als.module';
+import { AlsMiddleware } from './als/als.middleware';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -21,6 +25,7 @@ import { MailModule } from './mail/mail.module';
       isGlobal: true,
     }),
     EventEmitterModule.forRoot(),
+    MulterModule.register({ dest: './uploads' }),
     AuthModule,
     UserModule,
     BookmarkModule,
@@ -29,6 +34,8 @@ import { MailModule } from './mail/mail.module';
     RoleModule,
     CaslModule,
     MailModule,
+    FileModule,
+    AlsModule,
   ],
   controllers: [],
   providers: [
@@ -46,5 +53,6 @@ import { MailModule } from './mail/mail.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');
+    consumer.apply(AlsMiddleware).forRoutes('*');
   }
 }
